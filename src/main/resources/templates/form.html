@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dracula" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>OMG UFO - Nova Incidência</title>
+</head>
+<body class="bg-base-100 min-h-screen p-4 sm:p-8">
+
+<h1 class="text-primary text-3xl font-bold mb-8 text-center">Registrar Nova Incidência</h1>
+
+<main class="grid place-items-center">
+
+    <form th:action="@{/sigh/form}" method="POST" th:object="${sigh}" class="w-full max-w-md space-y-4">
+
+        <fieldset class="form-control bg-base-200 border border-base-300 rounded-box p-4">
+            <legend class="px-2 font-semibold">Localização</legend>
+            <input type="text" th:field="*{location}" placeholder="Cidade, Estado" class="input input-ghost w-full" />
+            <p class="label-text-alt mt-1 text-error" th:if="${#fields.hasErrors('location')}" th:errors="*{location}"></p>
+        </fieldset>
+
+        <fieldset class="form-control bg-base-200 border border-base-300 rounded-box p-4">
+            <legend class="px-2 font-semibold">Data e Hora</legend>
+            <input type="datetime-local" th:field="*{date_and_time}" class="input input-ghost w-full" />
+            <p class="label-text-alt mt-1 text-error" th:if="${#fields.hasErrors('date_and_time')}" th:errors="*{date_and_time}"></p>
+        </fieldset>
+
+        <fieldset class="form-control bg-base-200 border border-base-300 rounded-box p-4">
+            <legend class="px-2 font-semibold">Cor do Objeto</legend>
+            <input type="text" th:field="*{color}" placeholder="Ex: Prata" class="input input-ghost w-full" />
+            <p class="label-text-alt mt-1 text-error" th:if="${#fields.hasErrors('color')}" th:errors="*{color}"></p>
+        </fieldset>
+
+        <fieldset class="form-control bg-base-200 border border-base-300 rounded-box p-4">
+            <legend class="px-2 font-semibold">Formato do Objeto</legend>
+            <select th:field="*{shape}" class="select select-ghost w-full">
+                <option disabled selected value="">Selecione um formato</option>
+                <option value="Disco">Disco</option>
+                <option value="Esfera">Esfera</option>
+                <option value="Triângulo">Triângulo</option>
+                <option value="Quadrado">Quadrado</option>
+                <option value="Luz">Luz</option>
+                <option value="Outro">Outro</option>
+            </select>
+            <p class="label-text-alt mt-1 text-error" th:if="${#fields.hasErrors('shape')}" th:errors="*{shape}"></p>
+        </fieldset>
+
+        <fieldset class="form-control bg-base-200 border border-base-300 rounded-box p-4">
+            <legend class="px-2 font-semibold">Quantidade de Objetos</legend>
+            <input type="number" th:field="*{quantity_of_objects}" class="input input-ghost w-full" min="1" value="1" />
+            <p class="label-text-alt mt-1 text-error" th:if="${#fields.hasErrors('quantity_of_objects')}" th:errors="*{quantity_of_objects}"></p>
+        </fieldset>
+
+        <div class="flex justify-end gap-4 pt-4">
+            <a href="/sigh" class="btn btn-ghost">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+
+    </form>
+</main>
+
+</body>
+</html>
