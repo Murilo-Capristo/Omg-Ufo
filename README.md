@@ -1,2 +1,2 @@
 # Omg-Ufo
-Api com front end que cadastra novas incidências de OVNIs .
+Api em Java com front end que cadastra novas incidências de OVNIs .
